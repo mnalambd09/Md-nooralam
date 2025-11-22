@@ -58,6 +58,18 @@ section {
   padding: 40px 20px;
   text-align: center;
 }
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* মোবাইল ভিউতে এক কলাম */
+  gap: 20px;
+}
+
+/* Desktop view এ ৪টা করে দুই লাইনে সাজানো */
+@media (min-width: 992px) {
+  .experience-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
