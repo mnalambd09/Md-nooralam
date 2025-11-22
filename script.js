@@ -45,6 +45,39 @@ function closeEduCertificate() {
 function escCloseEduModal(e) {
   if (e.key === "Escape") closeEduCertificate();
 }
+// Zoom functionality for modal image
+let zoomLevel = 1;
+
+function enableZoom() {
+  const img = document.getElementById("edu-certificate-img");
+  img.style.transform = `scale(${zoomLevel})`;
+  img.style.transition = "transform 0.2s ease";
+  
+  img.addEventListener("wheel", function(e) {
+    e.preventDefault();
+    if (e.deltaY < 0) {
+      // scroll up → zoom in
+      zoomLevel += 0.1;
+    } else {
+      // scroll down → zoom out
+      zoomLevel = Math.max(0.5, zoomLevel - 0.1); // সর্বনিম্ন 0.5x
+    }
+    img.style.transform = `scale(${zoomLevel})`;
+  });
+}
+
+function openEduCertificate(src) {
+  const modal = document.getElementById("edu-certificate-modal");
+  const img = document.getElementById("edu-certificate-img");
+  img.src = src;
+  zoomLevel = 1; // reset zoom
+  img.style.transform = "scale(1)";
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
+  document.addEventListener("keydown", escCloseEduModal);
+  modal.addEventListener("click", backdropCloseEduModal);
+  enableZoom();
+}
 
 function backdropCloseEduModal(e) {
   const content = document.querySelector("#edu-certificate-modal .modal-content");
