@@ -76,12 +76,14 @@ section {
   gap: 20px;
 }
 .edu-cert {
-  width: 100px;
+  width: 120px;        /* ছবির প্রস্থ সীমাবদ্ধ */
+  height: auto;        /* অনুপাত ঠিক থাকবে */
   margin-top: 10px;
   cursor: pointer;
   border: 2px solid var(--accent-color);
   border-radius: 5px;
   transition: transform 0.3s;
+  object-fit: contain; /* ছবিকে ফিট করাবে */
 }
 
 .edu-cert:hover {
