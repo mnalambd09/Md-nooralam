@@ -129,12 +129,13 @@ section { padding: 40px 20px; text-align: center; }
 }
 #edu-certificate-modal img {
   display: block;
-  width: 100%;
-  height: auto;
+  width: auto;
+  max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
   border: 5px solid #fff;
   border-radius: 10px;
+  cursor: grab; /* zoom করার সময় cursor দেখাবে */
 }
 #edu-certificate-modal .close {
   position: absolute;
