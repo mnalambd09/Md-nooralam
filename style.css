@@ -70,6 +70,18 @@ section {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* মোবাইল ভিউতে এক কলাম */
+  gap: 20px;
+}
+
+/* Desktop view এ ৩টা কার্ড পাশাপাশি */
+@media (min-width: 992px) {
+  .education-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
