@@ -30,11 +30,28 @@
   <section id="education" class="fade-in">
   <h2>Education</h2>
   <div class="education-grid">
-    <div class="card">B.Sc in Computer Science - XYZ University (2020-2024)</div>
-    <div class="card">HSC - ABC College (2018-2020)</div>
-    <div class="card">SSC - DEF School (2016-2018)</div>
+    <div class="card">
+      <h3>B.Sc in Computer Science</h3>
+      <p>XYZ University (2020-2024)</p>
+    </div>
+    <div class="card">
+      <h3>HSC - ABC College (2018-2020)</h3>
+      <p>Certificate:</p>
+      <img src="images/hsc-cert.jpg" alt="HSC Certificate" class="edu-cert" onclick="openEduCertificate('images/hsc-cert.jpg')">
+    </div>
+    <div class="card">
+      <h3>SSC - DEF School (2016-2018)</h3>
+      <p>Certificate:</p>
+      <img src="images/ssc-cert.jpg" alt="SSC Certificate" class="edu-cert" onclick="openEduCertificate('images/ssc-cert.jpg')">
+    </div>
   </div>
 </section>
+
+<!-- Education Certificate Modal -->
+<div id="edu-certificate-modal" class="modal">
+  <span class="close" onclick="closeEduCertificate()">&times;</span>
+  <img id="edu-certificate-img" src="" alt="Education Certificate">
+</div>
 
   <!-- Certificates -->
   <section id="certificates" class="fade-in">
