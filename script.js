@@ -20,7 +20,15 @@ const appearOptions = {
   threshold: 0.2,
   rootMargin: "0px 0px -50px 0px"
 };
+// Education Certificate Modal
+function openEduCertificate(src) {
+  document.getElementById("edu-certificate-modal").style.display = "block";
+  document.getElementById("edu-certificate-img").src = src;
+}
 
+function closeEduCertificate() {
+  document.getElementById("edu-certificate-modal").style.display = "none";
+}
 const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
   entries.forEach(entry => {
     if (!entry.isIntersecting) {
