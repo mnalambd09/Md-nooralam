@@ -15,18 +15,20 @@ const appearOnScroll = new IntersectionObserver(function(entries, observer) {
 }, appearOptions);
 faders.forEach(fader => appearOnScroll.observe(fader));
 
-// 📜 Education Certificate Modal + Zoom + Drag
-let zoomLevel = 1;
-let isDragging = false;
-let startX, startY, translateX = 0, translateY = 0;
+/* ============================
+   Education Certificate Modal
+   ============================ */
+let eduZoomLevel = 1;
+let eduDragging = false;
+let eduStartX, eduStartY, eduTranslateX = 0, eduTranslateY = 0;
 
 function openEduCertificate(src) {
   const modal = document.getElementById("edu-certificate-modal");
   const img = document.getElementById("edu-certificate-img");
   img.src = src;
-  zoomLevel = 1;
-  translateX = 0;
-  translateY = 0;
+  eduZoomLevel = 1;
+  eduTranslateX = 0;
+  eduTranslateY = 0;
   img.style.transform = "scale(1) translate(0px,0px)";
   modal.classList.add("show");
   document.body.style.overflow = "hidden";
@@ -36,32 +38,32 @@ function openEduCertificate(src) {
   // Zoom with mouse wheel
   img.onwheel = function(e) {
     e.preventDefault();
-    if (e.deltaY < 0) zoomLevel += 0.1; // zoom in
-    else zoomLevel = Math.max(0.5, zoomLevel - 0.1); // zoom out
-    updateTransform(img);
+    if (e.deltaY < 0) eduZoomLevel += 0.1;
+    else eduZoomLevel = Math.max(0.5, eduZoomLevel - 0.1);
+    updateEduTransform(img);
   };
 
   // Drag to move
   img.onmousedown = function(e) {
-    isDragging = true;
-    startX = e.clientX - translateX;
-    startY = e.clientY - translateY;
+    eduDragging = true;
+    eduStartX = e.clientX - eduTranslateX;
+    eduStartY = e.clientY - eduTranslateY;
     img.style.cursor = "grabbing";
   };
   window.onmouseup = function() {
-    isDragging = false;
+    eduDragging = false;
     img.style.cursor = "grab";
   };
   window.onmousemove = function(e) {
-    if (!isDragging) return;
-    translateX = e.clientX - startX;
-    translateY = e.clientY - startY;
-    updateTransform(img);
+    if (!eduDragging) return;
+    eduTranslateX = e.clientX - eduStartX;
+    eduTranslateY = e.clientY - eduStartY;
+    updateEduTransform(img);
   };
 }
 
-function updateTransform(img) {
-  img.style.transform = `scale(${zoomLevel}) translate(${translateX}px, ${translateY}px)`;
+function updateEduTransform(img) {
+  img.style.transform = `scale(${eduZoomLevel}) translate(${eduTranslateX}px, ${eduTranslateY}px)`;
 }
 
 function closeEduCertificate() {
@@ -79,4 +81,72 @@ function escCloseEduModal(e) {
 function backdropCloseEduModal(e) {
   const content = document.querySelector("#edu-certificate-modal .modal-content");
   if (!content.contains(e.target)) closeEduCertificate();
+}
+
+/* ============================
+   Experience Certificate Modal
+   ============================ */
+let expZoomLevel = 1;
+let expDragging = false;
+let expStartX, expStartY, expTranslateX = 0, expTranslateY = 0;
+
+function openExpCertificate(src) {
+  const modal = document.getElementById("exp-certificate-modal");
+  const img = document.getElementById("exp-certificate-img");
+  img.src = src;
+  expZoomLevel = 1;
+  expTranslateX = 0;
+  expTranslateY = 0;
+  img.style.transform = "scale(1) translate(0px,0px)";
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
+  document.addEventListener("keydown", escCloseExpModal);
+  modal.addEventListener("click", backdropCloseExpModal);
+
+  // Zoom with mouse wheel
+  img.onwheel = function(e) {
+    e.preventDefault();
+    if (e.deltaY < 0) expZoomLevel += 0.1;
+    else expZoomLevel = Math.max(0.5, expZoomLevel - 0.1);
+    updateExpTransform(img);
+  };
+
+  // Drag to move
+  img.onmousedown = function(e) {
+    expDragging = true;
+    expStartX = e.clientX - expTranslateX;
+    expStartY = e.clientY - expTranslateY;
+    img.style.cursor = "grabbing";
+  };
+  window.onmouseup = function() {
+    expDragging = false;
+    img.style.cursor = "grab";
+  };
+  window.onmousemove = function(e) {
+    if (!expDragging) return;
+    expTranslateX = e.clientX - expStartX;
+    expTranslateY = e.clientY - expStartY;
+    updateExpTransform(img);
+  };
+}
+
+function updateExpTransform(img) {
+  img.style.transform = `scale(${expZoomLevel}) translate(${expTranslateX}px, ${expTranslateY}px)`;
+}
+
+function closeExpCertificate() {
+  const modal = document.getElementById("exp-certificate-modal");
+  modal.classList.remove("show");
+  document.body.style.overflow = "";
+  document.removeEventListener("keydown", escCloseExpModal);
+  modal.removeEventListener("click", backdropCloseExpModal);
+}
+
+function escCloseExpModal(e) {
+  if (e.key === "Escape") closeExpCertificate();
+}
+
+function backdropCloseExpModal(e) {
+  const content = document.querySelector("#exp-certificate-modal .modal-content");
+  if (!content.contains(e.target)) closeExpCertificate();
 }
