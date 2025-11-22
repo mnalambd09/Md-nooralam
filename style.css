@@ -103,9 +103,11 @@ section {
 
 #edu-certificate-modal img {
   margin-top: 50px;
-  max-width: 80%;
+  max-width: 90%;   /* স্ক্রিনের 90% এর বেশি হবে না */
+  max-height: 80vh; /* ভিউপোর্টের উচ্চতার 80% এর বেশি হবে না */
   border: 5px solid #fff;
   border-radius: 10px;
+  object-fit: contain; /* ছবিকে ফিট করাবে */
 }
 
 #edu-certificate-modal .close {
