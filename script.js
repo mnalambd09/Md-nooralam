@@ -5,33 +5,63 @@ document.getElementById("mode-toggle").addEventListener("click", function() {
 
 // ✨ Scroll Animation (fade-in + slide-up)
 const faders = document.querySelectorAll('.fade-in');
-
-const appearOptions = {
-  threshold: 0.2,
-  rootMargin: "0px 0px -50px 0px"
-};
-
-const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+const appearOnScroll = new IntersectionObserver(function(entries, observer) {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
     entry.target.classList.add('appear');
-    appearOnScroll.unobserve(entry.target);
+    observer.unobserve(entry.target);
   });
 }, appearOptions);
+faders.forEach(fader => appearOnScroll.observe(fader));
 
-faders.forEach(fader => {
-  appearOnScroll.observe(fader);
-});
+// 📜 Education Certificate Modal + Zoom + Drag
+let zoomLevel = 1;
+let isDragging = false;
+let startX, startY, translateX = 0, translateY = 0;
 
-// 📜 Education Certificate Modal
 function openEduCertificate(src) {
   const modal = document.getElementById("edu-certificate-modal");
   const img = document.getElementById("edu-certificate-img");
   img.src = src;
+  zoomLevel = 1;
+  translateX = 0;
+  translateY = 0;
+  img.style.transform = "scale(1) translate(0px,0px)";
   modal.classList.add("show");
-  document.body.style.overflow = "hidden"; // prevent background scroll
+  document.body.style.overflow = "hidden";
   document.addEventListener("keydown", escCloseEduModal);
   modal.addEventListener("click", backdropCloseEduModal);
+
+  // Zoom with mouse wheel
+  img.onwheel = function(e) {
+    e.preventDefault();
+    if (e.deltaY < 0) zoomLevel += 0.1; // zoom in
+    else zoomLevel = Math.max(0.5, zoomLevel - 0.1); // zoom out
+    updateTransform(img);
+  };
+
+  // Drag to move
+  img.onmousedown = function(e) {
+    isDragging = true;
+    startX = e.clientX - translateX;
+    startY = e.clientY - translateY;
+    img.style.cursor = "grabbing";
+  };
+  window.onmouseup = function() {
+    isDragging = false;
+    img.style.cursor = "grab";
+  };
+  window.onmousemove = function(e) {
+    if (!isDragging) return;
+    translateX = e.clientX - startX;
+    translateY = e.clientY - startY;
+    updateTransform(img);
+  };
+}
+
+function updateTransform(img) {
+  img.style.transform = `scale(${zoomLevel}) translate(${translateX}px, ${translateY}px)`;
 }
 
 function closeEduCertificate() {
@@ -45,43 +75,8 @@ function closeEduCertificate() {
 function escCloseEduModal(e) {
   if (e.key === "Escape") closeEduCertificate();
 }
-// Zoom functionality for modal image
-let zoomLevel = 1;
-
-function enableZoom() {
-  const img = document.getElementById("edu-certificate-img");
-  img.style.transform = `scale(${zoomLevel})`;
-  img.style.transition = "transform 0.2s ease";
-  
-  img.addEventListener("wheel", function(e) {
-    e.preventDefault();
-    if (e.deltaY < 0) {
-      // scroll up → zoom in
-      zoomLevel += 0.1;
-    } else {
-      // scroll down → zoom out
-      zoomLevel = Math.max(0.5, zoomLevel - 0.1); // সর্বনিম্ন 0.5x
-    }
-    img.style.transform = `scale(${zoomLevel})`;
-  });
-}
-
-function openEduCertificate(src) {
-  const modal = document.getElementById("edu-certificate-modal");
-  const img = document.getElementById("edu-certificate-img");
-  img.src = src;
-  zoomLevel = 1; // reset zoom
-  img.style.transform = "scale(1)";
-  modal.classList.add("show");
-  document.body.style.overflow = "hidden";
-  document.addEventListener("keydown", escCloseEduModal);
-  modal.addEventListener("click", backdropCloseEduModal);
-  enableZoom();
-}
 
 function backdropCloseEduModal(e) {
   const content = document.querySelector("#edu-certificate-modal .modal-content");
-  if (!content.contains(e.target)) {
-    closeEduCertificate();
-  }
+  if (!content.contains(e.target)) closeEduCertificate();
 }
