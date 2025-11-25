@@ -17,6 +17,14 @@ body.light-mode {
   --text-color: #000;
   --accent-color: #0077ff;
 }
+hr {
+  border: none;
+  border-top: 2px solid #ccc;
+  width: 50%;          /* অর্ধেক প্রস্থ */
+  margin: 20px auto;   /* মাঝখানে বসবে */
+  height: 4px;
+  background: linear-gradient(to right, #ff0000, #00ff00, #0000ff);
+}
 
 html { scroll-behavior: smooth; }
 
