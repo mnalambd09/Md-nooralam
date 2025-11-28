@@ -9,7 +9,7 @@ tsParticles.load("particles-js", {
     "line_linked": {
       "enable": true,
       "distance": 150,
-      "color": "#1e90ff",
+      "color": "#00ff00",
       "opacity": 0.6,
       "width": 2
     },
