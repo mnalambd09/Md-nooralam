@@ -33,7 +33,7 @@ header { text-align: center; padding: 40px 20px; }
 #header {
   position: relative;
   height: 300px; /* header height */
-  background: linear-gradient(to right, blue, red); /* সুন্দর gradient */
+  background: linear-gradient(to right, megenta, white, megenta); /* সুন্দর gradient */
   overflow: hidden;
   display: flex;
   align-items: center;
