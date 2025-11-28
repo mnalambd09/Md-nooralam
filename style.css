@@ -35,6 +35,41 @@ header { text-align: center; padding: 40px 20px; }
   height: 300px; /* header height */
   background: linear-gradient(to right, blue, red); /* সুন্দর gradient */
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+}
+/* Neon container */
+.neon-header {
+  z-index: 1;
+}
+
+/* Neon name */
+.neon-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  color: #00ffff;
+  text-shadow:
+    0 0 5px #00ffff,
+    0 0 10px #00ffff,
+    0 0 20px #00ffff,
+    0 0 40px #00ffff;
+  margin: 0;
+}
+
+/* Neon role */
+.neon-role {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  color: #ff00ff;
+  text-shadow:
+    0 0 5px #ff00ff,
+    0 0 10px #ff00ff,
+    0 0 20px #ff00ff,
+    0 0 40px #ff00ff;
+  margin-top: 10px;
 }
 
 #particles-js {
