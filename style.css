@@ -43,7 +43,10 @@ nav ul li a {
 }
 nav ul li a:hover { color: var(--accent-color); }
 
-section { padding: 40px 20px; text-align: center; }
+section {
+  width: 100%;
+  box-sizing: border-box;
+}
 
 .card, .experience-card, .project-card {
   background: rgba(255,255,255,0.1);
@@ -58,7 +61,7 @@ section { padding: 40px 20px; text-align: center; }
 .experience-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* responsive full width */
-  gap: 0;              /* কার্ডগুলোর মাঝে ফাঁকা থাকবে না */
+  gap: 10;              /* কার্ডগুলোর মাঝে ফাঁকা থাকবে না */
   width: 100%;         /* পুরো স্ক্রিন জুড়ে */
 }
 
@@ -66,6 +69,7 @@ section { padding: 40px 20px; text-align: center; }
 .experience-card {
   background: rgba(255,255,255,0.1);
   padding: 20px;
+   color: var(--text-color);
   border: 1px solid var(--accent-color); /* আলাদা বোঝার জন্য border */
   border-radius: 0;    /* একসাথে লাগানো দেখানোর জন্য corner round বাদ */
 }
