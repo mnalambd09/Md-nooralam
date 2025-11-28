@@ -33,7 +33,7 @@ header { text-align: center; padding: 40px 20px; }
 #header {
   position: relative;
   height: 300px; /* header height */
-  background: linear-gradient(to right, megenta, white, megenta); /* সুন্দর gradient */
+  background: linear-gradient(to right, magenta, white, magenta); /* সুন্দর gradient */
   overflow: hidden;
 }
 /* Neon container */
@@ -45,12 +45,12 @@ header { text-align: center; padding: 40px 20px; }
 .neon-name {
   font-family: 'Orbitron', sans-serif;
   font-size: 3rem;
-  color: #00ff00;
+  color: lime;
   text-shadow:
-    0 0 5px #00ff00,
-    0 0 10px #00ff00,
-    0 0 20px #00ff00,
-    0 0 40px #00ff00;
+    0 0 5px lime,
+    0 0 10px lime,
+    0 0 20px lime,
+    0 0 40px lime;
   margin: 0;
 }
 
