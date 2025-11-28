@@ -1,11 +1,11 @@
-/* Particles.js init */
+/* Particles.js Custom Config */
 particlesJS("particles-js", {
   "particles": {
-    "number": { "value": 80 },
-    "color": { "value": "#ffffff" },
-    "shape": { "type": "circle" },
-    "opacity": { "value": 0.5 },
-    "size": { "value": 3 },
+    "number": { "value": 100 },
+    "color": { "value": ["#ff0000", "#00ff00", "#0000ff", "#ff00ff", "#00ffff"] },
+    "shape": { "type": ["circle", "triangle", "star"] },
+    "opacity": { "value": 0.6, "random": true },
+    "size": { "value": 4, "random": true },
     "line_linked": {
       "enable": true,
       "distance": 150,
@@ -15,18 +15,21 @@ particlesJS("particles-js", {
     },
     "move": {
       "enable": true,
-      "speed": 3,
+      "speed": 2,
       "direction": "none",
+      "random": false,
+      "straight": false,
       "out_mode": "out"
     }
   },
   "interactivity": {
+    "detect_on": "canvas",
     "events": {
-      "onhover": { "enable": true, "mode": "repulse" },
+      "onhover": { "enable": true, "mode": "grab" },
       "onclick": { "enable": true, "mode": "push" }
     },
     "modes": {
-      "repulse": { "distance": 100 },
+      "grab": { "distance": 200, "line_linked": { "opacity": 0.7 } },
       "push": { "particles_nb": 4 }
     }
   },
