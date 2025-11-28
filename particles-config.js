@@ -1,9 +1,9 @@
 /* Particles.js Custom Config */
-particlesJS("particles-js", {
+tsParticles.load("particles-js", {
   "particles": {
     "number": { "value": 100 },
-    "color": { "value": ["#ff0000", "#00ff00", "#0000ff", "#ff00ff", "#00ffff"] },
-    "shape": { "type": ["circle", "triangle", "star"] },
+    color: { value: ["#ff0000", "#00ff00", "#0000ff"] }, // একাধিক রঙ কাজ করবে
+    shape: { type: ["circle", "triangle", "star"] },
     "opacity": { "value": 0.6, "random": true },
     "size": { "value": 4, "random": true },
     "line_linked": {
@@ -17,7 +17,7 @@ particlesJS("particles-js", {
       "enable": true,
       "speed": 2,
       "direction": "none",
-      "random": false,
+      "random": true,
       "straight": false,
       "out_mode": "out"
     }
